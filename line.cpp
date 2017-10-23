@@ -29,7 +29,10 @@ QRectF Line:: boundingRect() const
 
 void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    if(b1 == NULL)
     painter->setPen(QPen(Qt::black,6));
+    else
+    painter->setPen(QPen( Qt::red, 6, Qt::DashLine ));
     painter->drawLine(start,end);
         Q_UNUSED(option);
         Q_UNUSED(widget);

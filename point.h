@@ -22,7 +22,7 @@ public:
     double GetY();
     bool move;
 signals:
-    void signal2(Point *p,bool move);
+    void signal2(Point *p,bool move,bool dbl);
 
 public slots:
 
@@ -33,6 +33,6 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-
+    void mouseDoubleClickEvent();
 };
 #endif // POINT_H

@@ -26,7 +26,7 @@ signals:
 private slots:
     void slotAlarmTimer();
     void Bezier(Line *l);
-    void focus(Point *p,bool move);
+    void focus(Point *p, bool move, bool dbl);
 
 
 private:

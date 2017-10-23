@@ -84,8 +84,20 @@ void GraphicView::mousePressEvent(QMouseEvent *event )
        }
 }
 
-void GraphicView::focus(Point *p, bool move)
+void GraphicView::focus(Point *p, bool move,bool dbl)
 {
+    if(BezierMode == false)
+    {
+        scene->removeItem(myPat);
+        scene->removeItem(line->b1);
+        scene->removeItem(line->b2);
+        line->b1 = NULL;
+        line->b2 = NULL;
+        myPat = NULL;
+      //  line->setVisible(true);
+        scene->update();
+        return;
+    }
     scene->update();
     if(move == false)
     {
@@ -130,16 +142,14 @@ void GraphicView::Bezier(Line *l)
     if(BezierMode == true)
         if(l->b1 == NULL)
         {
-            l->b1 = new Point();
-            l->b2 = new Point();
+           l->b1 = new Point();
+           l->b2 = new Point();
            l->b1->SetX(((l->end.x()+l->start.x())/2));
            l->b1->SetY(l->start.y());
            l->b2->SetX(l->end.x());
            l->b2->SetY((l->end.y()+l->start.y())/2);
-           connect(l->b1,SIGNAL(signal2(Point *,bool)),this, SLOT(focus(Point *,bool)));
-           connect(l->b2,SIGNAL(signal2(Point *,bool)),this, SLOT(focus(Point *,bool)));
-          // connect(l->b1,SIGNAL(signal2(Point *)),this, SLOT(MyPath::ReDrawBezier(Point *)));
-          // connect(l->b2,SIGNAL(signal2(Point *)),this, SLOT(MyPath::ReDrawBezier(Point *)));
+           connect(l->b1,SIGNAL(signal2(Point *,bool,bool)),this, SLOT(focus(Point *,bool,bool)));
+           connect(l->b2,SIGNAL(signal2(Point *,bool,bool)),this, SLOT(focus(Point *,bool,bool)));
            QMap<int,QPointF> map;
            map[0] = l->start;
            map[1] = QPointF(l->b1->GetX(),l->b1->GetY());
@@ -157,7 +167,7 @@ void GraphicView::Bezier(Line *l)
                             ((map[5].y()+map[6].y())/2));
             map[9]= QPointF(((map[7].x()+map[8].x())/2),
                             ((map[7].y()+map[8].y())/2));
-           this->itemAt(map[0].x(),map[0].y())->setVisible(false);
+          // this->itemAt(map[0].x(),map[0].y())->setVisible(false);
            myPat->myPath1 = new QPainterPath(map[0]);
            myPat->myPath2 = new QPainterPath(map[9]);
            myPat->myPath1->cubicTo(map[4],
@@ -173,6 +183,7 @@ void GraphicView::Bezier(Line *l)
             scene->addItem(l->b2);
             scene->update();
     }
+    scene->update();
 }
 
 void GraphicView::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

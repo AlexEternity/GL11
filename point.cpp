@@ -47,7 +47,7 @@ void Point::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     this->update();
     this->SetX(event->scenePos().x());
     this->SetY(event->scenePos().y());
-    emit signal2(this,true);
+    emit signal2(this,true,false);
 }
 
 void Point::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -60,7 +60,10 @@ void Point::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     this->setCursor(QCursor(Qt::ArrowCursor));
     Q_UNUSED(event);
-    emit signal2(this,false);
+    emit signal2(this,false,false);
+}
 
-
+void Point::mouseDoubleClickEvent()
+{
+    emit signal2(this,false,true);
 }
