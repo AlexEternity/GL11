@@ -2,17 +2,15 @@
 #define MYPATH_H
 
 #include <QObject>
-#include <QObject>
 #include <QGraphicsItem>
 #include <QPainter>
-#include <QSharedPointer>
 #include <QRectF>
 #include <QGraphicsSceneMouseEvent>
 #include <QPen>
 #include <QPainter>
-#include <QMouseEvent>
 #include <QPainterPath>
 #include <line.h>
+
 class MyPath : public QObject, public QGraphicsItem
 {
     Q_OBJECT
@@ -24,11 +22,11 @@ public:
     Line *l;
     Point *b1;
     Point *b2;
-
+    Point *s1;
+    Point *s2;
 signals:
 
 private slots:
-    void ReDrawBezier(Point *p);
 private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event );
     QRectF boundingRect() const;

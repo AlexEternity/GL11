@@ -34,8 +34,6 @@ private:
     Ui::MainWindow *ui;
     GraphicView *view;
     QString sFile;
-    QGraphicsItemGroup *Points;
-    QGraphicsItemGroup *Lines;
 };
 
 #endif // MAINWINDOW_H

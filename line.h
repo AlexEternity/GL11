@@ -4,12 +4,10 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QPainter>
-#include <QSharedPointer>
 #include <QRectF>
 #include <QGraphicsSceneMouseEvent>
 #include <QPen>
 #include <QPainter>
-#include <QMouseEvent>
 #include <point.h>
 
 class Line : public QObject, public QGraphicsItem
@@ -20,6 +18,7 @@ public:
     ~Line();
     void SetS(double x,double y);
     void SetE(double x,double y);
+
     QPointF start;
     QPointF end;
     Point *b1;

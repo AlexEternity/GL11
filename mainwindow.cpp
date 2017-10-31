@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QSize>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
     view->setFixedHeight(this->height()*3);
     view->setFixedWidth(this->width()*5);
     this->setCentralWidget(view);
-   // ui->gridLayout->addWidget(view);
     view->BuildMode = false;
     view->BezierMode = false;
     view->SplineMode = false;

@@ -5,12 +5,11 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsItemGroup>
-#include <QTimer>
-#include <point.h>
-#include <line.h>
 #include <QMouseEvent>
 #include <QSharedPointer>
 #include <mypath.h>
+#include <point.h>
+#include <line.h>
 
 class GraphicView : public QGraphicsView
 {
@@ -24,25 +23,24 @@ public:
 signals:
 
 private slots:
-    void slotAlarmTimer();
     void Bezier(Line *l);
     void focus(Point *p, bool move, bool dbl);
 
 
 private:
     QGraphicsScene *scene;
-    QList<QSharedPointer<Point>> *points;
-    QList<QSharedPointer<Line>> *lines;
+    QList<Point*> *points;
+    QList<Line*> *lines;
+    QList<MyPath*> *paths;
+    QList<QList<MyPath*>*> *splines;
+    QList<MyPath*> *spline;
     QSharedPointer<Point> *previous;
     QGraphicsItemGroup *i1;
     QGraphicsItemGroup *i2;
-    QTimer *time;
     double x,y;
-void deleteItemsFromGroup(QGraphicsItemGroup *group);
 
 private:
     void mousePressEvent(QMouseEvent *event );
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     Point *point;
     Line *line;
     MyPath *myPat;

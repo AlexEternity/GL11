@@ -29,6 +29,7 @@ QRectF Line:: boundingRect() const
 
 void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+
     if(b1 == NULL)
     painter->setPen(QPen(Qt::black,6));
     else
@@ -41,4 +42,5 @@ void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Line::mousePressEvent(QGraphicsSceneMouseEvent *event )
 {
     emit signal1(this);
+    Q_UNUSED(event);
 }
